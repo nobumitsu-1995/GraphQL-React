@@ -8,6 +8,7 @@ interface UserType {
 }
 
 type Args = {
+  id?: string
   name: string
   email: string
 }
@@ -24,7 +25,7 @@ export class User implements UserType {
   email: string
 
   constructor(args: Args) {
-    this.id = uuidv4()
+    this.id = args.id ?? uuidv4()
     this.name = args.name
     this.email = args.email
   }
