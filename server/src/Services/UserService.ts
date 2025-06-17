@@ -21,7 +21,7 @@ export class UserService {
     return user
   }
 
-  async findByIds(ids: string[]) {
+  async findByIds(ids: readonly string[]) {
     const users = await this.userRepository.findByIds(ids)
 
     return users

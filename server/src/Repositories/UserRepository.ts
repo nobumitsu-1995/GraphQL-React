@@ -15,7 +15,7 @@ export class UserRepository implements IUserRepository {
     return createUser(id)
   }
 
-  async findByIds(ids: string[]) {
+  async findByIds(ids: readonly string[]) {
     return ids.map(id => createUser(id))
   }
 }
