@@ -1,7 +1,10 @@
+import "reflect-metadata"
 import express from 'express'
 import { buildSchema } from 'type-graphql'
 import { Container } from 'typedi'
 import { ApolloServer } from 'apollo-server-express'
+import { createContext } from './context'
+import { UserResolver } from './resolvers/UserResolver'
 
 const PORT = 80
 
@@ -9,14 +12,14 @@ const main = async () => {
   const app = express()
 
   const schema = await buildSchema({
-    resolvers: [() => {}],
+    resolvers: [UserResolver],
     container: Container,
     emitSchemaFile: true,
   })
 
   const server = new ApolloServer({
     schema,
-    context: () => {},
+    context: createContext,
   })
 
   await server.start()
