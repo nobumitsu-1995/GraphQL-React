@@ -1,3 +1,4 @@
+import { Service } from "typedi"
 import { User, type IUserRepository } from "../Models/User"
 
 const createUser = (id: string) => {
@@ -10,6 +11,7 @@ const createUser = (id: string) => {
   return user
 }
 
+@Service()
 export class UserRepository implements IUserRepository {
   async findById(id: string) {
     return createUser(id)

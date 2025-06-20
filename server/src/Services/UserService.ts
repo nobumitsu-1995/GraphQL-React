@@ -1,10 +1,10 @@
-import { Inject, Service } from "typedi";
-import { IUserRepository } from "../Models/User";
+import { Service } from "typedi";
+import { UserRepository } from "../Repositories/UserRepository";
 
 @Service()
 export class UserService {
   constructor(
-    @Inject("userRepository") private readonly userRepository: IUserRepository
+    private readonly userRepository: UserRepository
   ) {}
 
   async findById(id: string) {
