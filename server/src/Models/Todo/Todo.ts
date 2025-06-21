@@ -9,6 +9,7 @@ interface TodoType {
 }
 
 type Args = {
+  id?: string
   content: string
   status: TodoStatus
 }
@@ -24,7 +25,7 @@ export class Todo implements TodoType {
   status: TodoStatus
 
   constructor(args: Args) {
-    this.id = uuidv4()
+    this.id = args.id ?? uuidv4()
     this.content = args.content
     this.status = args.status
   }
