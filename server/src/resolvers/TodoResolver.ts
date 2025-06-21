@@ -7,7 +7,7 @@ import { Service } from "typedi";
 @Service()
 @Resolver(Todo)
 export class TodoResolver {
-  constructor(private readonly todoService: TodoService) {}
+  constructor(private todoService: TodoService) {}
 
   @Query(returns => Todo)
   async todo(
@@ -15,5 +15,13 @@ export class TodoResolver {
     @Ctx() {dataloaders}: MyContext
   ): Promise<Todo> {
     return dataloaders.todoByIdLoader.load(id)
+  }
+
+  @Query(returns => [Todo])
+  async todos(
+    @Arg("ids", type => [ID]) ids: string[],
+    @Ctx() { dataloaders }: MyContext
+  ): Promise<(Todo | Error)[]> {
+    return dataloaders.todoByIdLoader.loadMany(ids)
   }
 }

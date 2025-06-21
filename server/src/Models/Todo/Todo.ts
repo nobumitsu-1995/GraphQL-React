@@ -1,4 +1,4 @@
-import { Field } from "type-graphql"
+import { Field, ObjectType } from "type-graphql"
 import { TodoStatus } from "./TodoStatus"
 import { v4 as uuidv4 } from 'uuid'
 
@@ -14,6 +14,7 @@ type Args = {
   status: TodoStatus
 }
 
+@ObjectType({ description: 'todo情報' })
 export class Todo implements TodoType {
   @Field()
   id: string
