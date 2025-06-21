@@ -4,8 +4,24 @@
 # -----------------------------------------------
 
 type Query {
+  todo(id: ID!): Todo!
+  todos(ids: [ID!]!): [Todo!]!
   user(id: ID!): User!
   users(ids: [ID!]!): [User!]!
+}
+
+"""todo情報"""
+type Todo {
+  content: String!
+  id: String!
+  status: TodoStatus!
+}
+
+"""Todoの進行状況ステータス"""
+enum TodoStatus {
+  DONE
+  IN_PROGRESS
+  PENDING
 }
 
 """ユーザー情報"""
