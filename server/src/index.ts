@@ -5,6 +5,7 @@ import { Container } from 'typedi'
 import { ApolloServer } from 'apollo-server-express'
 import { createContext } from './context'
 import { UserResolver } from './resolvers/UserResolver'
+import { TodoResolver } from "./resolvers/TodoResolver"
 
 const PORT = 80
 
@@ -12,7 +13,7 @@ const main = async () => {
   const app = express()
 
   const schema = await buildSchema({
-    resolvers: [UserResolver],
+    resolvers: [UserResolver, TodoResolver],
     container: Container,
     emitSchemaFile: true,
   })
