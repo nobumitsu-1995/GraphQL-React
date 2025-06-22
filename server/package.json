@@ -13,10 +13,11 @@
     "@typescript/native-preview": "^7.0.0-dev.20250614.1",
     "class-validator": "^0.14.2",
     "nodemon": "^3.1.10",
-    "typedi": "^0.10.0",
+    "prisma": "^6.10.1",
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@prisma/client": "^6.10.1",
     "apollo-server-express": "^3.13.0",
     "dataloader": "^2.2.3",
     "express": "^4.21.2",
@@ -24,6 +25,7 @@
     "graphql-relay": "^0.10.2",
     "reflect-metadata": "^0.2.2",
     "type-graphql": "^2.0.0-rc.2",
+    "typedi": "^0.10.0",
     "uuid": "^11.1.0"
   }
 }
