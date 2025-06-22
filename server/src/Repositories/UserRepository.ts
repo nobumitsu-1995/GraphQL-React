@@ -2,16 +2,6 @@ import { Service } from "typedi"
 import { User, type IUserRepository } from "../Models/User"
 import { PrismaClient } from "@prisma/client"
 
-const createUser = (id: string) => {
-  const user = new User({
-    id,
-    name: `hoge-${id}`,
-    email: `example-${id}@example.com`
-  })
-
-  return user
-}
-
 @Service()
 export class UserRepository implements IUserRepository {
   private prisma = new PrismaClient()
