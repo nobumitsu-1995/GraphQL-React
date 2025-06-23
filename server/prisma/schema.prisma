@@ -14,16 +14,28 @@ enum TodoStatus {
 }
 
 model User {
-  id    String @unique
-  name  String
-  email String @unique
-  todos Todo[]
+  id       String     @unique
+  name     String
+  email    String     @unique
+  todos    Todo[]
+  Category Category[]
 }
 
 model Todo {
-  id      String     @unique
-  content String
-  status  TodoStatus @default(PENDING)
-  user    User       @relation(fields: [userId], references: [id])
-  userId  String
+  id         String     @unique
+  content    String
+  status     TodoStatus @default(PENDING)
+  user       User       @relation(fields: [userId], references: [id])
+  userId     String
+  category   Category?   @relation(fields: [categoryId], references: [id])
+  categoryId String?
+}
+
+model Category {
+  id        String  @unique
+  name      String
+  isDefault Boolean
+  user      User?   @relation(fields: [userId], references: [id])
+  userId    String?
+  Todo      Todo[]
 }
