@@ -6,6 +6,12 @@ const prisma = new PrismaClient()
 async function main() {
   console.log('🌱 Seeding database...')
 
+  // 既存のデータを削除（順序が重要：外部キー制約があるため）
+  console.log('🗑️ Cleaning existing data...')
+  await prisma.todo.deleteMany()
+  await prisma.category.deleteMany()
+  await prisma.user.deleteMany()
+
   // ユーザーを作成
   const user1 = await prisma.user.create({
     data: {
@@ -51,9 +57,35 @@ async function main() {
     },
   })
 
+  const defaultCategory1 = await prisma.category.create({
+    data: {
+      id: uuidv4(),
+      name: 'プライベート',
+      isDefault: true,
+    }
+  })
+
+  const defaultCategory2 = await prisma.category.create({
+    data: {
+      id: uuidv4(),
+      name: '仕事',
+      isDefault: true,
+    }
+  })
+
+  const customCategory = await prisma.category.create({
+    data: {
+      id: uuidv4(),
+      name: '勉強すること',
+      isDefault: false,
+      userId: user1.id
+    }
+  })
+
   console.log('✅ Seeding completed!')
   console.log('Created users:', { user1, user2 })
   console.log('Created todos:', { todo1, todo2, todo3 })
+  console.log('Created categories:', { defaultCategory1, defaultCategory2, customCategory })
 }
 
 main()
