@@ -11,12 +11,8 @@ interface CategoryType {
 
 type Args = {
   name: string
-  isDefault?: false
-  user: User
-} | {
-  name: string
-  isDefault: true
-  user?: never
+  isDefault: boolean
+  user?: User
 }
 
 export class Category implements CategoryType {
