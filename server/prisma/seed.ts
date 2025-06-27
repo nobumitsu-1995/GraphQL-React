@@ -29,34 +29,6 @@ async function main() {
     },
   })
 
-  // Todoを作成
-  const todo1 = await prisma.todo.create({
-    data: {
-      id: uuidv4(),
-      content: 'GraphQLの勉強をする',
-      status: 'PENDING',
-      userId: user1.id,
-    },
-  })
-
-  const todo2 = await prisma.todo.create({
-    data: {
-      id: uuidv4(),
-      content: 'Reactアプリを作る',
-      status: 'IN_PROGRESS',
-      userId: user1.id,
-    },
-  })
-
-  const todo3 = await prisma.todo.create({
-    data: {
-      id: uuidv4(),
-      content: '買い物に行く',
-      status: 'DONE',
-      userId: user2.id,
-    },
-  })
-
   const defaultCategory1 = await prisma.category.create({
     data: {
       id: uuidv4(),
@@ -80,6 +52,37 @@ async function main() {
       isDefault: false,
       userId: user1.id
     }
+  })
+
+  // Todoを作成
+  const todo1 = await prisma.todo.create({
+    data: {
+      id: uuidv4(),
+      content: 'GraphQLの勉強をする',
+      status: 'PENDING',
+      userId: user1.id,
+      categoryId: defaultCategory1.id
+    },
+  })
+
+  const todo2 = await prisma.todo.create({
+    data: {
+      id: uuidv4(),
+      content: 'Reactアプリを作る',
+      status: 'IN_PROGRESS',
+      userId: user1.id,
+      categoryId: customCategory.id
+    },
+  })
+
+  const todo3 = await prisma.todo.create({
+    data: {
+      id: uuidv4(),
+      content: '買い物に行く',
+      status: 'DONE',
+      userId: user2.id,
+      categoryId: defaultCategory2.id
+    },
   })
 
   console.log('✅ Seeding completed!')
